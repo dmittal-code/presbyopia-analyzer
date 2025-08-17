@@ -54,6 +54,8 @@ const Dashboard: React.FC = () => {
   const loadAnalysis = async () => {
     try {
       const filterParams = {
+        ageMin: filters.ageMin,
+        ageMax: filters.ageMax,
         city: filters.city || undefined,
         gender: filters.gender || undefined,
         occupation: filters.occupation || undefined
@@ -162,12 +164,12 @@ const Dashboard: React.FC = () => {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-montserrat font-medium text-nudge-gray">
-                  {(filters.city || filters.gender || filters.occupation) ? 'Filtered Patients' : 'Total Patients'}
+                  {(filters.city || filters.gender || filters.occupation || filters.ageMin !== 35 || filters.ageMax !== 75) ? 'Filtered Patients' : 'Total Patients'}
                 </p>
                 <p className="text-3xl font-montserrat font-heading text-nudge-slate">
-                  {(filters.city || filters.gender || filters.occupation) ? filteredCount.toLocaleString() : patients.length.toLocaleString()}
+                  {(filters.city || filters.gender || filters.occupation || filters.ageMin !== 35 || filters.ageMax !== 75) ? filteredCount.toLocaleString() : patients.length.toLocaleString()}
                 </p>
-                {(filters.city || filters.gender || filters.occupation) && (
+                {(filters.city || filters.gender || filters.occupation || filters.ageMin !== 35 || filters.ageMax !== 75) && (
                   <p className="text-xs text-nudge-gray-light mt-1">of {patients.length.toLocaleString()} total</p>
                 )}
               </div>

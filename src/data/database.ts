@@ -63,6 +63,8 @@ export interface AgeGroupAnalysis {
 }
 
 export async function getAgeWiseAnalysis(filters?: {
+  ageMin?: number;
+  ageMax?: number;
   city?: string;
   gender?: string;
   occupation?: string;
@@ -71,6 +73,11 @@ export async function getAgeWiseAnalysis(filters?: {
   
   let whereConditions: string[] = [];
   let params: any[] = [];
+  
+  if (filters?.ageMin !== undefined && filters?.ageMax !== undefined) {
+    whereConditions.push('age >= ? AND age <= ?');
+    params.push(filters.ageMin, filters.ageMax);
+  }
   
   if (filters?.city) {
     whereConditions.push('city = ?');
@@ -164,6 +171,8 @@ export interface DiopterDistribution {
 }
 
 export async function getDiopterDistribution(filters?: {
+  ageMin?: number;
+  ageMax?: number;
   city?: string;
   gender?: string;
   occupation?: string;
@@ -172,6 +181,11 @@ export async function getDiopterDistribution(filters?: {
   
   let whereConditions: string[] = [];
   let params: any[] = [];
+  
+  if (filters?.ageMin !== undefined && filters?.ageMax !== undefined) {
+    whereConditions.push('age >= ? AND age <= ?');
+    params.push(filters.ageMin, filters.ageMax);
+  }
   
   if (filters?.city) {
     whereConditions.push('city = ?');
