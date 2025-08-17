@@ -104,35 +104,36 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-nudge-background">
-      <header className="bg-white shadow-sm border-b border-nudge-gray-light">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <header className="bg-white shadow-sm border-b border-nudge-gray-light sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <img src="/nudge_logo.svg" alt="The Nudge" className="h-8 w-auto" />
-              <div>
-                <h1 className="text-nudge-h2 font-heading text-nudge-slate">Presbyopia Analysis Dashboard</h1>
-                <p className="text-sm text-nudge-gray font-montserrat">Vision Screening Program</p>
+            <div className="flex items-center space-x-2 sm:space-x-3 min-w-0">
+              <img src="/nudge_logo.svg" alt="The Nudge" className="h-6 sm:h-8 w-auto flex-shrink-0" />
+              <div className="min-w-0">
+                <h1 className="text-lg sm:text-nudge-h2 font-heading text-nudge-slate truncate">Presbyopia Analysis</h1>
+                <p className="text-xs sm:text-sm text-nudge-gray font-montserrat hidden sm:block">Vision Screening Program</p>
               </div>
             </div>
             <button
               onClick={handleExportData}
-              className="flex items-center space-x-2 px-4 py-2 bg-nudge-brown text-white rounded-lg hover:bg-nudge-brown-dark transition-colors font-montserrat font-button"
+              className="flex items-center space-x-1 sm:space-x-2 px-3 sm:px-4 py-2 bg-nudge-brown text-white rounded-lg hover:bg-nudge-brown-dark transition-colors font-montserrat font-button text-sm sm:text-base"
             >
               <Download className="h-4 w-4" />
-              <span>Export Data</span>
+              <span className="hidden sm:inline">Export Data</span>
+              <span className="sm:hidden">Export</span>
             </button>
           </div>
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8">
         {/* Tab Navigation */}
-        <div className="bg-white rounded-lg shadow mb-6">
+        <div className="bg-white rounded-lg shadow mb-4 sm:mb-6">
           <div className="border-b border-gray-200">
             <nav className="-mb-px flex">
               <button
                 onClick={() => setActiveTab('dashboard')}
-                className={`py-3 px-6 flex items-center space-x-2 border-b-2 font-montserrat font-button text-sm transition-colors ${
+                className={`flex-1 sm:flex-none py-3 px-4 sm:px-6 flex items-center justify-center sm:justify-start space-x-2 border-b-2 font-montserrat font-button text-sm transition-colors ${
                   activeTab === 'dashboard'
                     ? 'border-nudge-brown text-nudge-brown'
                     : 'border-transparent text-nudge-gray hover:text-nudge-slate hover:border-nudge-gray-light'
@@ -143,7 +144,7 @@ const Dashboard: React.FC = () => {
               </button>
               <button
                 onClick={() => setActiveTab('insights')}
-                className={`py-3 px-6 flex items-center space-x-2 border-b-2 font-montserrat font-button text-sm transition-colors ${
+                className={`flex-1 sm:flex-none py-3 px-4 sm:px-6 flex items-center justify-center sm:justify-start space-x-2 border-b-2 font-montserrat font-button text-sm transition-colors ${
                   activeTab === 'insights'
                     ? 'border-nudge-brown text-nudge-brown'
                     : 'border-transparent text-nudge-gray hover:text-nudge-slate hover:border-nudge-gray-light'
@@ -159,66 +160,66 @@ const Dashboard: React.FC = () => {
         {/* Dashboard Tab Content */}
         {activeTab === 'dashboard' && (
           <>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div className="bg-white rounded-lg shadow p-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 lg:gap-6 mb-6 sm:mb-8">
+          <div className="bg-white rounded-lg shadow p-4 sm:p-6 hover:shadow-lg transition-shadow">
             <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-montserrat font-medium text-nudge-gray">
+              <div className="flex-1 min-w-0">
+                <p className="text-xs sm:text-sm font-montserrat font-medium text-nudge-gray">
                   {(filters.city || filters.gender || filters.occupation || filters.ageMin !== 35 || filters.ageMax !== 75) ? 'Filtered Patients' : 'Total Patients'}
                 </p>
-                <p className="text-3xl font-montserrat font-heading text-nudge-slate">
+                <p className="text-2xl sm:text-3xl font-montserrat font-heading text-nudge-slate mt-1">
                   {(filters.city || filters.gender || filters.occupation || filters.ageMin !== 35 || filters.ageMax !== 75) ? filteredCount.toLocaleString() : patients.length.toLocaleString()}
                 </p>
                 {(filters.city || filters.gender || filters.occupation || filters.ageMin !== 35 || filters.ageMax !== 75) && (
                   <p className="text-xs text-nudge-gray-light mt-1">of {patients.length.toLocaleString()} total</p>
                 )}
               </div>
-              <Users className="h-12 w-12 text-nudge-brown opacity-20" />
+              <Users className="h-10 w-10 sm:h-12 sm:w-12 text-nudge-brown opacity-20 flex-shrink-0 ml-3" />
             </div>
           </div>
           
-          <div className="bg-white rounded-lg shadow p-6">
+          <div className="bg-white rounded-lg shadow p-4 sm:p-6 hover:shadow-lg transition-shadow">
             <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-montserrat font-medium text-nudge-gray">Cities Covered</p>
-                <p className="text-3xl font-montserrat font-heading text-nudge-slate">{cityAnalysis.length}</p>
+              <div className="flex-1 min-w-0">
+                <p className="text-xs sm:text-sm font-montserrat font-medium text-nudge-gray">Cities Covered</p>
+                <p className="text-2xl sm:text-3xl font-montserrat font-heading text-nudge-slate mt-1">{cityAnalysis.length}</p>
               </div>
-              <ChartBar className="h-12 w-12 text-nudge-brown-light opacity-20" />
+              <ChartBar className="h-10 w-10 sm:h-12 sm:w-12 text-nudge-brown-light opacity-20 flex-shrink-0 ml-3" />
             </div>
           </div>
           
-          <div className="bg-white rounded-lg shadow p-6">
+          <div className="bg-white rounded-lg shadow p-4 sm:p-6 hover:shadow-lg transition-shadow sm:col-span-2 md:col-span-1">
             <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-montserrat font-medium text-nudge-gray">Avg Diopter</p>
-                <p className="text-3xl font-montserrat font-heading text-nudge-slate">
+              <div className="flex-1 min-w-0">
+                <p className="text-xs sm:text-sm font-montserrat font-medium text-nudge-gray">Avg Diopter</p>
+                <p className="text-2xl sm:text-3xl font-montserrat font-heading text-nudge-slate mt-1">
                   +{(patients.reduce((acc, p) => acc + p.diopterStrength, 0) / patients.length).toFixed(2)}
                 </p>
               </div>
-              <Eye className="h-12 w-12 text-nudge-brown opacity-20" />
+              <Eye className="h-10 w-10 sm:h-12 sm:w-12 text-nudge-brown opacity-20 flex-shrink-0 ml-3" />
             </div>
           </div>
         </div>
 
         <Filters filters={filters} onFilterChange={setFilters} cities={cityAnalysis.map(c => c.city)} />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mt-6 sm:mt-8">
           <AgeWiseIncidenceChart data={ageAnalysis} />
           <DiopterDistributionChart data={diopterDistribution} />
         </div>
 
-        <div className="mt-6">
+        <div className="mt-4 sm:mt-6">
           <GlobalComparisonChart localData={ageAnalysis} />
         </div>
 
-        <div className="mt-8 bg-white rounded-lg shadow p-6">
-          <h2 className="text-nudge-h5 font-heading text-nudge-slate mb-4">City-wise Distribution</h2>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+        <div className="mt-6 sm:mt-8 bg-white rounded-lg shadow p-4 sm:p-6">
+          <h2 className="text-lg sm:text-nudge-h5 font-heading text-nudge-slate mb-4">City-wise Distribution</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4">
             {cityAnalysis.slice(0, 10).map(city => (
-              <div key={city.city} className="text-center">
-                <p className="text-sm text-nudge-gray">{city.city}</p>
-                <p className="text-xl font-semibold text-nudge-slate">{city.count}</p>
-                <p className="text-xs text-nudge-gray-light">Avg: +{city.averageDiopter}</p>
+              <div key={city.city} className="text-center p-2 sm:p-3 bg-nudge-background rounded-lg hover:bg-gray-50 transition-colors">
+                <p className="text-xs sm:text-sm text-nudge-gray font-medium truncate">{city.city}</p>
+                <p className="text-lg sm:text-xl font-semibold text-nudge-slate mt-1">{city.count}</p>
+                <p className="text-xs text-nudge-gray-light mt-1">Avg: +{city.averageDiopter}</p>
               </div>
             ))}
           </div>

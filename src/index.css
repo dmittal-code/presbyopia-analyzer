@@ -5,6 +5,9 @@
 @layer base {
   body {
     @apply font-montserrat font-body text-nudge-body;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
   }
   
   h1 {
@@ -29,5 +32,70 @@
   
   button {
     @apply font-montserrat font-button;
+  }
+}
+
+@layer utilities {
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
+  
+  .safe-padding-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  .safe-padding-top {
+    padding-top: env(safe-area-inset-top);
+  }
+}
+
+@layer components {
+  @media (max-width: 640px) {
+    .recharts-wrapper {
+      font-size: 12px !important;
+    }
+    
+    .recharts-cartesian-axis-tick-value {
+      font-size: 10px !important;
+    }
+    
+    .recharts-legend-wrapper {
+      font-size: 11px !important;
+    }
+    
+    .recharts-tooltip-wrapper {
+      z-index: 1000 !important;
+    }
+    
+    select {
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 0.5rem center;
+      background-size: 1.5em 1.5em;
+      padding-right: 2.5rem;
+    }
+    
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      height: 30px;
+      opacity: 1;
+    }
+  }
+  
+  @media (hover: hover) and (pointer: fine) {
+    button:hover {
+      transform: translateY(-1px);
+      transition: transform 0.2s ease;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .card-shadow {
+      box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+    }
+    
+    .card-shadow:active {
+      box-shadow: 0 0 0 2px rgba(105, 61, 48, 0.2);
+    }
   }
 }
