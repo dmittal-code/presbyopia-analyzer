@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-montserrat font-body text-nudge-body;
+  }
+  
+  h1 {
+    @apply font-montserrat font-heading text-nudge-h1;
+  }
+  
+  h2 {
+    @apply font-montserrat font-heading text-nudge-h2;
+  }
+  
+  h3 {
+    @apply font-montserrat font-heading text-nudge-h3;
+  }
+  
+  h4 {
+    @apply font-montserrat font-heading text-nudge-h4;
+  }
+  
+  h5 {
+    @apply font-montserrat font-heading text-nudge-h5;
+  }
+  
+  button {
+    @apply font-montserrat font-button;
+  }
+}
